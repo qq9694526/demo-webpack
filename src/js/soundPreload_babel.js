@@ -80,12 +80,12 @@ var fileList = [{
 {
     id: "dog",
     src: require("../audio/dog.mp3")
-},
-require("../img/bg-repeat.png"), require("../img/boy1.png"), require("../img/boy2.png"), require("../img/cha-1.png")];
+}];
 
 function loadAudioAndInit() {
     var queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
+    createjs.Sound.alternateExtensions = ["mp3"];
     queue.on("complete", complete, undefined);
     queue.on("progress", progress, undefined);
     queue.loadManifest(fileList);
@@ -95,10 +95,11 @@ function complete() {
     setTimeout(function () {
         load.style.display = "none";
         canvasDom.style.display = "block";
-        var a = createSound(require("../audio/bg.mp3")).play({
-            loop: 5
-        });
-        a.volume = 0.5;
+        // var a = createSound(require("../audio/bg.mp3")).play({
+        //     loop: 5
+        // });
+        // a.volume = 0.5;
+        createjs.Sound.play("bg")
         domInit(contentWidth, contentHeight, init)
     }, 500)
 }
@@ -116,7 +117,8 @@ function audioInit(a) {
         var e = c.endY * getScale();
         if (a > d && a < e && !c.hasPlay) {
             c.hasPlay = true;
-            c.sound.play()
+            // c.sound.play()
+            createjs.Sound.play(c.name)
         } else {
             if (a <= d || a >= e) {
                 if (c.hasPlay) {
