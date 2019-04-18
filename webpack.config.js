@@ -3,17 +3,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js'
-    },
+    entry: './src/main.js',
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'CreateJS-Npm',
+            template: './src/index.html'
         })
     ],
     output: {
-        filename: '[name].bundle.js',
+        filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
     devServer: {
@@ -21,6 +20,10 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                use: ['html-withimg-loader']
+            },
             {
                 test: /\.css$/,
                 use: [
@@ -30,9 +33,25 @@ module.exports = {
             },
             {
                 test: /\.(png|svg|jpg|gif|jpeg)$/,
-                use: [
-                    'file-loader'
-                ]
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'img/', // 默认情况下，它会输出到webpack配置的output路径下
+                        publicPath: 'img/', // outputPath is for copying，publicPath keeping the correct reference in the places where we use this.
+                    }
+                }
+            },
+            {
+                test: /\.mp3$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name].[ext]',
+                        outputPath: 'audio/', 
+                        publicPath: 'audio/', 
+                    }
+                }
             },
             {
                 test: /\.js$/,
