@@ -95,11 +95,11 @@ function complete() {
     setTimeout(function () {
         load.style.display = "none";
         canvasDom.style.display = "block";
-        // var a = createSound(require("../audio/bg.mp3")).play({
-        //     loop: 5
-        // });
-        // a.volume = 0.5;
-        createjs.Sound.play("bg")
+        var a = createSound(require("../audio/bg.mp3")).play({
+            loop: 5
+        });
+        a.volume = 0.5;
+        // createjs.Sound.play("bg")
         domInit(contentWidth, contentHeight, init)
     }, 500)
 }
@@ -122,7 +122,7 @@ function audioInit(a) {
         } else {
             if (a <= d || a >= e) {
                 if (c.hasPlay) {
-                    c.sound._paused = true;
+                    // c.sound._paused = true;
                     c.hasPlay = false
                 }
             }
@@ -134,91 +134,78 @@ function createSound(a) {
 }
 var audioList = [{
     name: "ring",
-    sound: createSound(require("../audio/ring.mp3")),
     hasPlay: false,
     starY: "500",
     endY: "1000"
 },
 {
     name: "bird",
-    sound: createSound(require("../audio/bird.mp3")),
     hasPlay: false,
     starY: "2300",
     endY: "3800"
 },
 {
     name: "girl",
-    sound: createSound(require("../audio/girl.mp3")),
     hasPlay: false,
     starY: "24507",
     endY: "25509"
 },
 {
     name: "dog",
-    sound: createSound(require("../audio/dog.mp3")),
     hasPlay: false,
     starY: "4700",
     endY: "5700"
 },
 {
     name: "cd_audio1",
-    sound: createSound(require("../audio/cd_audio1.mp3")),
     hasPlay: false,
     starY: "5400",
     endY: "6400"
 },
 {
     name: "tj_audio1",
-    sound: createSound(require("../audio/tj_audio1.mp3")),
     hasPlay: false,
     starY: "25507",
     endY: "26507"
 },
 {
     name: "tj_audio2",
-    sound: createSound(require("../audio/tj_audio2.mp3")),
     hasPlay: false,
     starY: "20907",
     endY: "21907"
 },
 {
     name: "tj_audio3",
-    sound: createSound(require("../audio/tj_audio3.mp3")),
     hasPlay: false,
     starY: "30507",
     endY: "31507"
 },
 {
     name: "tj_audio4",
-    sound: createSound(require("../audio/block.mp3")),
     hasPlay: false,
     starY: "19271",
     endY: "20871"
 },
 {
     name: "sy_audio1",
-    sound: createSound(require("../audio/sy_audio1.mp3")),
     hasPlay: false,
     starY: "11087",
     endY: "12387"
 },
 {
     name: "sy_audio2",
-    sound: createSound(require("../audio/sy_audio2.mp3")),
     hasPlay: false,
     starY: "12387",
     endY: "13387"
 },
 {
     name: "sy_audio3",
-    sound: createSound(require("../audio/sy_audio3.mp3")),
     hasPlay: false,
     starY: "9087",
     endY: "10387"
 },
 {
     name: "sy_audio4",
-    sound: createSound(require("../audio/cat.mp3")),
     hasPlay: false,
     starY: "29060",
     endY: "30060"
