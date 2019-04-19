@@ -7,7 +7,6 @@ import {
     contentHeight
 } from './utils'
 
-function noobnoob() { }
 var progressBar = document.querySelector(".progressBar");
 var progressText = document.querySelector(".progressText");
 var load = document.querySelector(".load");
