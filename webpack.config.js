@@ -5,7 +5,9 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports = {
     entry: {
         index: './src/main.js',
-        step1: './src/js/step1.js'
+        step1: './src/js/step1.js',
+        step2: './src/js/step2.js',
+        step3: './src/js/step3.js'
     },// 入口
     output: {
         filename: '[name].js', // 打包生成包的名称
@@ -14,16 +16,28 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),// 清理/dist文件夹,官方给的['dist']入参会报错，这里去掉
         new HtmlWebpackPlugin({
-            filename:"index.html",
+            filename: "index.html",
             title: 'CreateJS-Npm',// 配置模板标题
             template: './src/index.html', //配置html模板路径
             chunks: ['index']
         }),
         new HtmlWebpackPlugin({
-            filename:"step1.html",
+            filename: "step1.html",
             title: '第一步',// 配置模板标题
-            template: './src/step1.html', //配置html模板路径
+            template: './src/step.html', //配置html模板路径
             chunks: ['step1']
+        }),
+        new HtmlWebpackPlugin({
+            filename: "step2.html",
+            title: '第二步',// 配置模板标题
+            template: './src/step.html', //配置html模板路径
+            chunks: ['step2']
+        }),
+        new HtmlWebpackPlugin({
+            filename: "step3.html",
+            title: '第三步',// 配置模板标题
+            template: './src/step.html', //配置html模板路径
+            chunks: ['step3']
         })
     ],
     devServer: {
