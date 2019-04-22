@@ -68,5 +68,12 @@ const initV4 = () => {
 }
 
 
+window.onload = () => {
+    // 初始化画布宽高
+    const canvas = document.getElementById("testCanvas");
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    initV4()
+}
 
-export default initV4
+// export default initV4

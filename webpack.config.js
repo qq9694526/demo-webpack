@@ -3,16 +3,27 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: './src/main.js',// 入口
+    entry: {
+        index: './src/main.js',
+        step1: './src/js/step1.js'
+    },// 入口
     output: {
-        filename: 'main.js', // 打包生成包的名称
+        filename: '[name].js', // 打包生成包的名称
         path: path.resolve(__dirname, 'dist') //指定打包到的目录
     },
     plugins: [
         new CleanWebpackPlugin(),// 清理/dist文件夹,官方给的['dist']入参会报错，这里去掉
         new HtmlWebpackPlugin({
+            filename:"index.html",
             title: 'CreateJS-Npm',// 配置模板标题
-            template: './src/index.html' //配置html模板路径
+            template: './src/index.html', //配置html模板路径
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            filename:"step1.html",
+            title: '第一步',// 配置模板标题
+            template: './src/step1.html', //配置html模板路径
+            chunks: ['step1']
         })
     ],
     devServer: {
@@ -38,7 +49,7 @@ module.exports = {
                     options: {
                         name: '[name].[ext]', // 动态名称
                         outputPath: 'img/', // 默认情况下，它会输出到webpack配置的output路径下
-                        publicPath: 'img/', 
+                        publicPath: 'img/',
                     }
                 }
             },
